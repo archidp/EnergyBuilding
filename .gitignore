@@ -1,0 +1,5 @@
+# Local MCP server checkout and virtual environment created by scripts/install_ladybug_tools_mcp.sh
+tools/ladybug-tools-mcp/
+
+# Agent skill copied from the upstream Ladybug Tools MCP checkout during local setup
+.agents/skills/ladybug-tools-mcp-use/

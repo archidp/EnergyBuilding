@@ -1,0 +1,20 @@
+{
+  "name": "energybuilding-local-plugins",
+  "interface": {
+    "displayName": "EnergyBuilding Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "ladybug-tools-mcp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ladybug-tools-mcp"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Engineering"
+    }
+  ]
+}
