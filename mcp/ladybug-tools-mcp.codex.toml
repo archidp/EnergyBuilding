@@ -1,0 +1,6 @@
+# Codex MCP configuration written by scripts/install_ladybug_tools_mcp.sh.
+# If you install somewhere else, replace both paths with your local checkout.
+[mcp_servers.ladybug-tools-mcp]
+command = "/workspace/EnergyBuilding/.mcp/ladybug-tools-mcp/.venv/bin/python"
+args = ["-m", "ladybug_tools_mcp.server"]
+cwd = "/workspace/EnergyBuilding/.mcp/ladybug-tools-mcp"
