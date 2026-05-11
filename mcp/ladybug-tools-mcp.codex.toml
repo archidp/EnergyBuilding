@@ -1,0 +1,10 @@
+# Codex MCP configuration template for Ladybug Tools MCP.
+# Copy this block into ~/.codex/config.toml after running:
+#   scripts/install_ladybug_tools_mcp.sh
+# If you install somewhere other than /workspace/EnergyBuilding/tools/ladybug-tools-mcp,
+# update command and cwd to match the absolute installation path.
+
+[mcp_servers.ladybug-tools-mcp]
+command = "/workspace/EnergyBuilding/tools/ladybug-tools-mcp/.venv/bin/python"
+args = ["-m", "ladybug_tools_mcp.server"]
+cwd = "/workspace/EnergyBuilding/tools/ladybug-tools-mcp"

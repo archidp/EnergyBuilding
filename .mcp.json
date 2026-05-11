@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ladybug-tools-mcp": {
+      "command": "/workspace/EnergyBuilding/tools/ladybug-tools-mcp/.venv/bin/python",
+      "args": ["-m", "ladybug_tools_mcp.server"],
+      "cwd": "/workspace/EnergyBuilding/tools/ladybug-tools-mcp"
+    }
+  }
+}
