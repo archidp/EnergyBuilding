@@ -39,7 +39,10 @@ After restarting the agent application:
 
 1. Invoke the project skill with `/ladybug-tools-mcp-use` if your agent app
    requires explicit skill activation.
-2. Say `HI , Ladybug Tools !` to start the Ladybug Tools onboarding flow.
+2. Say `Hi, Ladybug Tools!` to start the Ladybug Tools onboarding flow.
+   The upstream skill also treats close variants, including `Hi,Ladybug Tools!`
+   and host-specific mentions such as `@ladybug-tools-mcp Hi,Ladybug Tools!`,
+   as a broad English start once the MCP server and project skill are loaded.
 3. Choose one of the top-level directions that the onboarding flow offers.
 4. Select an existing Garden or create a new Garden before asking the agent to
    model, prepare resources, or collaborate with Rhino / Grasshopper.

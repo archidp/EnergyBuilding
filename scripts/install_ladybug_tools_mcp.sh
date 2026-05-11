@@ -107,5 +107,5 @@ Project skill directory:
   $PROJECT_SKILL_DIR
 
 Restart the agent application so it reloads MCP servers and skills.
-After restart, invoke /$SKILL_NAME and say: HI , Ladybug Tools !
+After restart, invoke /$SKILL_NAME and say: Hi, Ladybug Tools!
 EOF2
