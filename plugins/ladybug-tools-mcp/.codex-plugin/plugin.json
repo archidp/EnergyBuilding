@@ -1,0 +1,39 @@
+{
+  "name": "ladybug-tools-mcp",
+  "version": "0.1.0",
+  "description": "Run the local Ladybug Tools MCP server from this EnergyBuilding workspace.",
+  "author": {
+    "name": "LoftyTao",
+    "url": "https://github.com/LoftyTao"
+  },
+  "homepage": "https://github.com/LoftyTao/ladybug-tools-mcp",
+  "repository": "https://github.com/LoftyTao/ladybug-tools-mcp",
+  "license": "GPL-3.0-only",
+  "keywords": [
+    "ladybug-tools",
+    "mcp",
+    "codex",
+    "honeybee",
+    "energy-simulation"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Ladybug Tools MCP",
+    "shortDescription": "Local Ladybug Tools modeling and simulation for Codex",
+    "longDescription": "Starts the Ladybug Tools MCP server installed by scripts/install_ladybug_tools_mcp.sh and provides onboarding guidance for Garden setup, Honeybee modeling, simulation, visualization, and Flowerpot collaboration.",
+    "developerName": "LoftyTao",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/LoftyTao/ladybug-tools-mcp",
+    "defaultPrompt": [
+      "Hi, Ladybug Tools!",
+      "Create a new Garden for this project and build a simple Honeybee room with south-facing windows.",
+      "Search EPW data, download the weather file into my Garden, and start an energy simulation."
+    ]
+  }
+}
