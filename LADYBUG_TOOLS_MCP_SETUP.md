@@ -29,16 +29,23 @@ The script will:
    `.agents/skills/ladybug-tools-mcp-use` so agent apps that discover
    project-level skills can load the Ladybug Tools operating guidance.
 7. Add a `ladybug-tools-mcp` server block to `~/.codex/config.toml`.
+8. If the Codex CLI is available, register this repository as a local Codex
+   plugin marketplace so `@Ladybug Tools MCP` can be installed from Codex.
+   If the CLI is not available, the script prints the manual registration
+   command instead.
 
 Restart Codex, Claude Code, Cursor, OpenCode, or any other MCP-capable agent
-after installation so the MCP client reloads its server list and project skills.
+after installation so the MCP client reloads its server list, project skills,
+and plugin marketplaces.
 
 ## First use
 
 After restarting the agent application:
 
-1. Invoke the project skill with `/ladybug-tools-mcp-use` if your agent app
-   requires explicit skill activation.
+1. In Codex, install or enable the **Ladybug Tools MCP** plugin from the
+   **EnergyBuilding Local Plugins** marketplace, then invoke it with
+   `@Ladybug Tools MCP`. If your agent app uses project skills instead of
+   plugins, invoke `/ladybug-tools-mcp-use`.
 2. Say `Hi, Ladybug Tools!` to start the Ladybug Tools onboarding flow.
    The upstream skill also treats close variants, including `Hi,Ladybug Tools!`
    and host-specific mentions such as `@ladybug-tools-mcp Hi,Ladybug Tools!`,
@@ -53,8 +60,11 @@ After restarting the agent application:
   workspace JSON configuration.
 - `mcp/ladybug-tools-mcp.codex.toml` provides the Codex TOML server block for
   manual installation or review.
+- `.agents/plugins/marketplace.json` and `plugins/ladybug-tools-mcp/` provide a
+  repo-local Codex plugin that points at the installed MCP server.
 - `scripts/install_ladybug_tools_mcp.sh` performs the clone, Python setup,
-  project skill setup, and Codex configuration update.
+  project skill setup, Codex MCP configuration update, and optional Codex
+  marketplace registration.
 
 ## Customization
 
@@ -65,6 +75,7 @@ LADYBUG_TOOLS_MCP_DIR=/absolute/path/to/ladybug-tools-mcp \
 PYTHON_BIN=python3.12 \
 CODEX_CONFIG="$HOME/.codex/config.toml" \
 PROJECT_SKILLS_DIR=/absolute/path/to/.agents/skills \
+REGISTER_CODEX_MARKETPLACE=auto \
 scripts/install_ladybug_tools_mcp.sh
 ```
 

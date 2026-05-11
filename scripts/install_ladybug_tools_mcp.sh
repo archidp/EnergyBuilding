@@ -9,6 +9,7 @@ PYTHON_BIN="${PYTHON_BIN:-python3.12}"
 CODEX_CONFIG="${CODEX_CONFIG:-$HOME/.codex/config.toml}"
 PROJECT_SKILLS_DIR="${PROJECT_SKILLS_DIR:-$WORKSPACE_DIR/.agents/skills}"
 SKILL_NAME="ladybug-tools-mcp-use"
+REGISTER_CODEX_MARKETPLACE="${REGISTER_CODEX_MARKETPLACE:-auto}"
 
 require_command() {
   local command_name="$1"
@@ -24,6 +25,40 @@ require_command() {
 require_command git "Install Git, then rerun this script."
 require_command uv "Install uv first: https://docs.astral.sh/uv/getting-started/installation/"
 require_command "$PYTHON_BIN" "Install Python 3.12 or set PYTHON_BIN to a compatible Python executable."
+
+register_codex_marketplace() {
+  local mode
+  mode="$(printf '%s' "$REGISTER_CODEX_MARKETPLACE" | tr '[:upper:]' '[:lower:]')"
+
+  case "$mode" in
+    0|false|no|never)
+      echo "Skipping Codex plugin marketplace registration."
+      return 0
+      ;;
+    auto)
+      if ! command -v codex >/dev/null 2>&1; then
+        echo "Codex CLI not found; skipping automatic plugin marketplace registration." >&2
+        echo "To register later, run: codex plugin marketplace add $WORKSPACE_DIR" >&2
+        return 0
+      fi
+      ;;
+    1|true|yes|always)
+      require_command codex "Install the Codex CLI or set REGISTER_CODEX_MARKETPLACE=auto/no."
+      ;;
+    *)
+      echo "Unsupported REGISTER_CODEX_MARKETPLACE value: $REGISTER_CODEX_MARKETPLACE" >&2
+      echo "Use auto, yes, or no." >&2
+      exit 1
+      ;;
+  esac
+
+  codex plugin marketplace add "$WORKSPACE_DIR" || {
+    echo "Warning: Codex plugin marketplace registration failed." >&2
+    echo "You can retry manually with: codex plugin marketplace add $WORKSPACE_DIR" >&2
+    return 0
+  }
+  echo "Registered Codex plugin marketplace: $WORKSPACE_DIR"
+}
 
 mkdir -p "$(dirname "$INSTALL_DIR")"
 
@@ -95,6 +130,8 @@ config_path.write_text(text)
 print(f"Wrote Codex MCP configuration to {config_path}")
 PY
 
+register_codex_marketplace
+
 cat <<EOF2
 
 Ladybug Tools MCP is installed at:
@@ -106,6 +143,6 @@ Codex MCP configuration was written to:
 Project skill directory:
   $PROJECT_SKILL_DIR
 
-Restart the agent application so it reloads MCP servers and skills.
-After restart, invoke /$SKILL_NAME and say: Hi, Ladybug Tools!
+Restart the agent application so it reloads MCP servers, skills, and plugins.
+After restart, invoke @Ladybug Tools MCP or /$SKILL_NAME and say: Hi, Ladybug Tools!
 EOF2
